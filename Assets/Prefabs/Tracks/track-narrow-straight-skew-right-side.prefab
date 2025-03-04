@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7452548000102183059}
   - component: {fileID: 2161546254978043368}
   - component: {fileID: 6070852499404080605}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: track-narrow-straight-skew-right-side
   m_TagString: Untagged
   m_Icon: {fileID: 0}

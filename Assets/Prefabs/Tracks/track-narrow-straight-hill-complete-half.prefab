@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6236788457977933219}
   - component: {fileID: 3727470042582777573}
   - component: {fileID: 939347923745748226}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: track-narrow-straight-hill-complete-half
   m_TagString: Untagged
   m_Icon: {fileID: 0}

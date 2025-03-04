@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 276941435904878625}
   - component: {fileID: 2883760166683586999}
   - component: {fileID: 8959239264763318383}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: track-narrow-corner-small-ramp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

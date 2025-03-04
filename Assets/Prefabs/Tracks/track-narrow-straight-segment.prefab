@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7919942259327198115}
   - component: {fileID: 5336130917337241449}
   - component: {fileID: 7816052067921690890}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: track-narrow-straight-segment
   m_TagString: Untagged
   m_Icon: {fileID: 0}

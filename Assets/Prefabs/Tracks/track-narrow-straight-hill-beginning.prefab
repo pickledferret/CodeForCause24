@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8264507668038846279}
   - component: {fileID: 6794845293825521715}
   - component: {fileID: 3680490447921994517}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: track-narrow-straight-hill-beginning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
