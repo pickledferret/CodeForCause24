@@ -12,7 +12,7 @@ GameObject:
   m_Layer: 0
   m_Name: Waypoint-Start
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -43,7 +43,7 @@ GameObject:
   m_Layer: 0
   m_Name: Waypoint-End
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 5454147052368778999}
   - component: {fileID: 591273779473716802}
   - component: {fileID: 7337727800897413677}
+  - component: {fileID: 2287355949929189459}
   m_Layer: 6
   m_Name: track-narrow-straight
   m_TagString: Untagged
@@ -173,3 +174,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -6324012554525015061, guid: f0554186e2e641045a5ec7b7ad1a65cf, type: 3}
+--- !u!114 &2287355949929189459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7507077747482344991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 234f9ab1098733544825c0afab97634f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_waypointNodes:
+  - {fileID: 8281595044574130895}
+  - {fileID: 8308422627196148080}
