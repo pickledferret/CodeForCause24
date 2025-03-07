@@ -11,8 +11,10 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask m_trackMask;
     [SerializeField] private float m_speed = 5f;
 
-    private bool m_isMoving = true;
+    private bool m_isMoving = false;
     private bool m_crashed = false;
+    private bool m_trackStarted = false;
+    private bool m_trackComplete = false;
 
     private SplineContainer m_currentSpline;
     private float m_splineDistancePercentage = 0f;
@@ -25,15 +27,34 @@ public class Player : MonoBehaviour
     private Coroutine m_speedBoostCoroutine;
     private Coroutine m_speedDebuffCoroutine;
 
+
+    private void Awake()
+    {
+        GameplayEvents.StartLevelPressed += StartLevel;
+    }
+
+    private void OnDestroy()
+    {
+        GameplayEvents.StartLevelPressed -= StartLevel;
+    }
+
     void Start()
     {
         m_originalSpeed = m_speed;
         m_currentSpeed = m_originalSpeed;
+    }
 
+    private void StartLevel()
+    {
+        m_isMoving = true;
+        m_trackStarted = true;
     }
 
     void Update()
     {
+        if (!m_trackStarted)
+            return;
+
         if (m_crashed)
             return;
 
@@ -50,8 +71,18 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void TrackComplete()
+    {
+        m_trackComplete = true;
+    }
+
     public void Crashed(float heightForceMultiplier = 1f)
     {
+        if (!m_trackComplete)
+        {
+            GameManager.Instance.LevelFailed();
+        }
+
         ClearCurrentSpline();
         m_crashed = true;
         m_isMoving = false;

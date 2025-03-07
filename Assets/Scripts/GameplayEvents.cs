@@ -17,13 +17,20 @@ public static class GameplayEvents
 
 
     // Screen Fade Events
-    public static event ScreenFadeDelegate DoScreenFade;
-    public static void RaiseDoScreenFade(float fadeToBlackTime, Action fadeToBlackCallback, float delayBeforeFadeIn, float fadeInTime, Action fadeInCallback)
+    public static event ScreenFadeDelegate ScreenFade;
+    public static void OnDoScreenFade(float fadeToBlackTime, Action fadeToBlackCallback, float delayBeforeFadeIn, float fadeInTime, Action fadeInCallback)
     {
-        DoScreenFade?.Invoke(fadeToBlackTime, fadeToBlackCallback, delayBeforeFadeIn, fadeInTime, fadeInCallback);
+        ScreenFade?.Invoke(fadeToBlackTime, fadeToBlackCallback, delayBeforeFadeIn, fadeInTime, fadeInCallback);
     }
 
     // Custom Events
+    public static event EmptyDelegate StartLevelPressed;
+    public static void OnStartLevelPressed()
+    {
+        StartLevelPressed?.Invoke();
+    }
+
+
     public static event EmptyDelegate UserInputPressed;
     public static void OnUserInputPressed()
     {

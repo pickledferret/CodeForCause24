@@ -6,13 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    private const string LEVEL = "Level";
+
     public static GameManager Instance { get; private set; }
 
     [SerializeField] private Canvas m_canvas;
+    [SerializeField] private StartScreen m_startScreen;
+    [SerializeField] private GameScreen m_gameScreen;
+    [SerializeField] private LevelCompleteScreen m_levelCompleteScreen;
+    [SerializeField] private LevelFailedScreen m_levelFailedScreen;
     public Canvas Canvas => m_canvas;
 
     private int m_currentLevel = 0;
     public int CurrentLevel => m_currentLevel;
+
+    private string m_currentLoadedLevel;
 
     private void Awake()
     {
@@ -26,19 +34,17 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.sceneUnloaded += OnSceneUnloaded;
-    }
-
     private void Start()
     {
+        LoadCurrentLevel();
     }
 
-    public void EnterLevel()
+    private void LoadCurrentLevel()
     {
-        SceneManager.LoadScene("Workshop", LoadSceneMode.Additive);
+        m_currentLoadedLevel = LEVEL + m_currentLevel;
+        SceneManager.LoadScene(m_currentLoadedLevel, LoadSceneMode.Additive);
+
+        m_startScreen.gameObject.SetActive(true);
     }
 
     public void LevelCompleted()
@@ -48,27 +54,42 @@ public class GameManager : MonoBehaviour
 
         m_currentLevel++;
 
-        GameplayEvents.RaiseDoScreenFade(0.5f, () =>
+        m_gameScreen.gameObject.SetActive(false);
+        m_levelCompleteScreen.gameObject.SetActive(true);
+    }
+
+    public void LevelFailed()
+    {
+        m_gameScreen.gameObject.SetActive(false);
+        m_levelFailedScreen.gameObject.SetActive(true);
+    }
+
+    public void GoToNextLevel()
+    {
+        GameplayEvents.OnDoScreenFade(0.5f, () =>
         {
             // On Screen Faded To Black.
-            SceneManager.UnloadSceneAsync("Workshop");
+            m_levelCompleteScreen.gameObject.SetActive(false);
+            SceneManager.UnloadSceneAsync(m_currentLoadedLevel);
+            LoadCurrentLevel();
         }, 0.1f, 0.5f, null);
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    public void ResetCurrentLevel()
     {
-        Debug.Log($"Scene '{scene.name}' loaded.");
-        if (scene.name != "MainScene")
+        GameplayEvents.OnDoScreenFade(0.5f, () =>
         {
-    		// Start Gameplay...
-        }
+            // On Screen Faded To Black.
+            m_levelFailedScreen.gameObject.SetActive(false);
+            SceneManager.UnloadSceneAsync(m_currentLoadedLevel);
+            LoadCurrentLevel();
+        }, 0.1f, 0.5f, null);
     }
 
-    private void OnSceneUnloaded(Scene scene)
+    public void StartGame()
     {
-        Debug.Log($"Scene '{scene.name}' unloaded.");
-        if (scene.name == "Workshop")
-        {
-        }
+        m_startScreen.gameObject.SetActive(false);
+        m_gameScreen.gameObject.SetActive(true);
+        GameplayEvents.OnStartLevelPressed();
     }
 }
