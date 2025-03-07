@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4654254739798817201}
   - component: {fileID: 5404907365459428634}
+  - component: {fileID: 3069966290734465347}
+  - component: {fileID: 5741776146786879753}
   m_Layer: 0
   m_Name: vehicle-player
   m_TagString: Untagged
@@ -57,8 +59,53 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.56223786, y: 0.38391942, z: 0.8865115}
-  m_Center: {x: 0, y: 0.18644539, z: -0.000000029802322}
+  m_Size: {x: 0.56223786, y: 0.3764749, z: 0.5469127}
+  m_Center: {x: 0, y: 0.19016765, z: -0.04218337}
+--- !u!114 &3069966290734465347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266125328607525877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 742b4bb4841d41e4e8ffbf403e6c24fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_rigidbody: {fileID: 5741776146786879753}
+  m_nextTrackRaycastPoint: {fileID: 2693066992710693199}
+  m_trackMask:
+    serializedVersion: 2
+    m_Bits: 64
+  m_speed: 2
+--- !u!54 &5741776146786879753
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266125328607525877}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &3680680403525906417
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,7 +561,7 @@ Transform:
   m_GameObject: {fileID: 8393121438418497622}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0.4492}
+  m_LocalPosition: {x: 0, y: 0.25, z: 0.375}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

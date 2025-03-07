@@ -28,7 +28,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8716735656956972075}
   m_Father: {fileID: 3344298607892153549}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1719925413473792392
@@ -72,6 +73,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1671037326836933343}
+  - component: {fileID: 2834864144748484689}
+  - component: {fileID: 6056334851583854493}
   m_Layer: 0
   m_Name: track-rotator
   m_TagString: Untagged
@@ -92,17 +95,55 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8716735656956972075}
   - {fileID: 3344298607892153549}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2834864144748484689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3309123806884258807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9ca737135929a34780ac3fa22fef5bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_directionState: 1
+  m_startState: 1
+  m_rotatorPivot: {fileID: 5869709755075382179}
+  m_rotateTweenDuration: 0.75
+  m_speedOverride: 0.1
+  m_speedOverrideDuration: 2.5
+--- !u!65 &6056334851583854493
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3309123806884258807}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.8, y: 0.39999998, z: 0.46616304}
+  m_Center: {x: 1.1269875e-15, y: 0.3, z: 0.16691846}
 --- !u!1001 &2503582432299884589
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1671037326836933343}
+    m_TransformParent: {fileID: 5869709755075382179}
     m_Modifications:
     - target: {fileID: 5336130917337241449, guid: f8225e84aabfd3a4cb99e18497b53231, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

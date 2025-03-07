@@ -1,35 +1,44 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Splines;
 
-public abstract class TrackBase : MonoBehaviour
+public class TrackBase : MonoBehaviour
 {
-    [SerializeField] protected List<Transform> m_waypointNodes = new();
+    protected Player m_player;
 
-    public Transform GetStartPoint()
+    protected virtual void Awake()
     {
-        return m_waypointNodes[0];
+        GameplayEvents.UserInputPressed += GameplayEvents_UserInputPressed;
+        GameplayEvents.UserInputReleased += GameplayEvents_UserInputReleased;
     }
 
-    public List<Transform> GetWaypoints()
+    private void OnDestroy()
     {
-        return m_waypointNodes;
+        GameplayEvents.UserInputPressed -= GameplayEvents_UserInputPressed;
+        GameplayEvents.UserInputReleased -= GameplayEvents_UserInputReleased;
     }
 
-    private void OnDrawGizmos()
+    protected virtual void GameplayEvents_UserInputPressed()
     {
-        if (m_waypointNodes.Count > 0)
+    }
+
+    protected virtual void GameplayEvents_UserInputReleased()
+    {
+    }
+
+    protected virtual void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.TryGetComponent(out Player player))
         {
-            Gizmos.color = Color.green;
-            for (int i = 0; i < m_waypointNodes.Count; i++)
-            {
-                if (i == m_waypointNodes.Count - 1)
-                    return;
+            m_player = player;
+        }
+    }
 
-                if (m_waypointNodes[i] == null || m_waypointNodes[i + 1] == null)
-                    return;
-
-                Gizmos.DrawLine(m_waypointNodes[i].position, m_waypointNodes[i + 1].position);
-            }
+    protected virtual void OnTriggerExit(Collider collider)
+    {
+        if (collider.gameObject.TryGetComponent(out Player player))
+        {
+            m_player = null;
         }
     }
 }

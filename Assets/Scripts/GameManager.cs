@@ -8,7 +8,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    [SerializeField] private Canvas m_canvas;
+    public Canvas Canvas => m_canvas;
+
     private int m_currentLevel = 0;
+    public int CurrentLevel => m_currentLevel;
 
     private void Awake()
     {

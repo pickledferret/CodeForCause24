@@ -6,6 +6,7 @@ using System;
 public static class GameplayEvents
 {
     // Core Delegates
+    public delegate void EmptyDelegate();
     public delegate void IntDelegate(int val);
     public delegate void StringDelegate(string val);
     public delegate void BoolDelegate(bool val);
@@ -14,9 +15,6 @@ public static class GameplayEvents
     // Custom Delegates
     public delegate void ScreenFadeDelegate(float fadeToBlackTime, Action fadeToBlackCallback, float delayBeforeFadeIn, float fadeInTime, Action fadeInCallback);
 
-    // Main Menu Events
-    public static event Action PlayPressed;
-    public static void OnPlayPressed() => PlayPressed?.Invoke();
 
     // Screen Fade Events
     public static event ScreenFadeDelegate DoScreenFade;
@@ -26,6 +24,15 @@ public static class GameplayEvents
     }
 
     // Custom Events
-    public static event IntDelegate PageUpdated;
-    public static void RaisePageUpdated(int pageIndex) => PageUpdated?.Invoke(pageIndex);
+    public static event EmptyDelegate UserInputPressed;
+    public static void OnUserInputPressed()
+    {
+        UserInputPressed?.Invoke();
+    }
+
+    public static event EmptyDelegate UserInputReleased;
+    public static void OnUserInputReleased()
+    {
+        UserInputReleased?.Invoke();
+    }
 }
