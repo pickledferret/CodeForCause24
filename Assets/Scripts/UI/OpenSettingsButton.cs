@@ -13,6 +13,9 @@ public class OpenSettingsButton : MonoBehaviour
             return;
         }
 
+        AudioManager audioManager = AudioManager.Instance;
+        audioManager.PlayUIAudio(audioManager.AudioSoundList.ui.uiButtonPress);
+
         SettingsScreen settingsScreen = Instantiate(settingsPrefab, GameManager.Instance.Canvas.transform);
         settingsScreen.transform.SetAsLastSibling();
     }

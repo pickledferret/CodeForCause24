@@ -41,7 +41,6 @@ public class SettingsScreen : MonoBehaviour
         m_backgroundGearRight.Rotate(m_backgroundGearRight.forward, -m_rotateSpeed, Space.Self);
     }
 
-
     public void OnMusicSliderValChanged(float val)
     {
         AudioManager.Instance.UpdateMusicVolume(val);
@@ -55,7 +54,7 @@ public class SettingsScreen : MonoBehaviour
     public void OnClosePressed()
     {
         AudioManager audioManager = AudioManager.Instance;
-        //audioManager.PlayUIAudio(audioManager.AudioSoundList.ui.settingsClose);
+        audioManager.PlayUIAudio(audioManager.AudioSoundList.ui.uiButtonPress);
 
         m_content.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBack).OnComplete(() => Destroy(gameObject));
     }

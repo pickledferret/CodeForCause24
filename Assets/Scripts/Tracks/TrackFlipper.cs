@@ -45,7 +45,8 @@ public class TrackFlipper : TrackBase
 
         if (m_player)
         {
-            if (m_player.GetCurrentSplineDistancePercentage() < 0.4f)
+            float playerSplineDistance = m_player.GetCurrentSplineDistancePercentage();
+            if (playerSplineDistance < 0.4f || playerSplineDistance > 0.8f)
             {
                 float midHeight = m_jumpTarget.position.y - transform.position.y;
                 midHeight *= 0.5f;
@@ -59,6 +60,9 @@ public class TrackFlipper : TrackBase
             {
                 m_player.JumpTo(m_jumpTarget.position, m_jumpHeight, m_jumpDuration, false);
             }
+
+            AudioManager audioManager = AudioManager.Instance;
+            audioManager.PlaySFXAudio(audioManager.AudioSoundList.sfx.jumpPad);
 
             m_playerWasJumped = true;
         }

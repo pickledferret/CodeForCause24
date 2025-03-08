@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -40,6 +41,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource m_sfxSource;
     [SerializeField] private AudioSource m_musicSource;
     [SerializeField] private AudioSource m_uiSource;
+    [SerializeField] private AudioSource m_playerSource;
 
     private void Start()
     {
@@ -88,5 +90,23 @@ public class AudioManager : MonoBehaviour
         m_musicSource.clip = clip.audioClip;
         m_musicSource.volume = clip.volume;
         m_musicSource.Play();
+    }
+
+    public void PlayPlayerAudio(AudioClipReference clip)
+    {
+        m_playerSource.clip = clip.audioClip;
+        m_playerSource.volume = clip.volume;
+        m_playerSource.Play();
+        m_playerSource.pitch = 0f;
+    }
+
+    public void FadeInPlayerSource()
+    {
+        m_playerSource.DOPitch(1f, 0.3f);
+    }
+
+    public void FadeOutPlayerSource()
+    {
+        m_playerSource.DOPitch(0f, 0.3f);
     }
 }

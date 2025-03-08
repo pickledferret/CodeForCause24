@@ -6,8 +6,10 @@ using UnityEngine.Splines;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private CameraController m_followCameraPrefab;
     [SerializeField] private Rigidbody m_rigidbody;
     [SerializeField] private Transform m_nextTrackRaycastPoint;
+    [SerializeField] private Transform[] m_frontTyres;
     [SerializeField] private LayerMask m_trackMask;
     [SerializeField] private float m_speed = 5f;
 
@@ -20,17 +22,20 @@ public class Player : MonoBehaviour
     private float m_splineDistancePercentage = 0f;
     private float m_splineLength = 0f;
     private bool m_splineCompleted = false;
+    private CameraController m_followCamera;
 
     // Speed Boost Controls
     private float m_originalSpeed;
     private float m_currentSpeed;
     private Coroutine m_speedBoostCoroutine;
     private Coroutine m_speedDebuffCoroutine;
-
+   
 
     private void Awake()
     {
         GameplayEvents.StartLevelPressed += StartLevel;
+        m_followCamera = Instantiate(m_followCameraPrefab);
+        m_followCamera.SetFollowTarget(transform);
     }
 
     private void OnDestroy()
@@ -42,12 +47,17 @@ public class Player : MonoBehaviour
     {
         m_originalSpeed = m_speed;
         m_currentSpeed = m_originalSpeed;
+        PlayAmbientSFX();
     }
 
     private void StartLevel()
     {
         m_isMoving = true;
         m_trackStarted = true;
+        m_followCamera.CanUpdate(true);
+
+        AudioManager audioManager = AudioManager.Instance;
+        audioManager.FadeInPlayerSource();
     }
 
     void Update()
@@ -63,6 +73,7 @@ public class Player : MonoBehaviour
         if (m_isMoving && m_currentSpline)
         {
             UpdatePosition();
+            CheckFrontTyresOnTrack();
         }
 
         if (m_splineCompleted || (m_currentSpline == null && m_isMoving))
@@ -78,10 +89,18 @@ public class Player : MonoBehaviour
 
     public void Crashed(float heightForceMultiplier = 1f)
     {
+        AudioManager audioManager = AudioManager.Instance;
+
         if (!m_trackComplete)
         {
             GameManager.Instance.LevelFailed();
+
+            audioManager.PlaySFXAudio(audioManager.AudioSoundList.sfx.carCrashHorn);
         }
+
+        audioManager.FadeOutPlayerSource();
+
+        m_followCamera.CanUpdate(false);
 
         ClearCurrentSpline();
         m_crashed = true;
@@ -110,7 +129,7 @@ public class Player : MonoBehaviour
     private void RaycastCheckForTrackChange()
     {
         Ray ray = new Ray(m_nextTrackRaycastPoint.position, -transform.up);
-        if (Physics.Raycast(ray, out RaycastHit hit, 0.5f, m_trackMask))
+        if (Physics.Raycast(ray, out RaycastHit hit, 1f, m_trackMask))
         {
             TrackSpline trackSpline = hit.transform.GetComponent<TrackSpline>();
             if (trackSpline && trackSpline.GetSpline() != m_currentSpline)
@@ -164,6 +183,31 @@ public class Player : MonoBehaviour
             Vector3 dir = nextPos - currentPos;
             transform.rotation = Quaternion.LookRotation(dir, transform.up);
         }
+    }
+
+    private void CheckFrontTyresOnTrack()
+    {
+        bool bothTyresOffGround = true;
+
+        foreach (Transform tyre in m_frontTyres)
+        {
+            Ray ray = new Ray(tyre.position, -transform.up);
+            if (Physics.Raycast(ray, out RaycastHit hit, 0.5f, m_trackMask))
+            {
+                bothTyresOffGround = false;
+                break;
+            }
+        }
+
+        if (bothTyresOffGround)
+        {
+            Crashed();
+        }
+    }
+
+    public void PauseMovement(bool pause)
+    {
+        m_isMoving = pause;
     }
 
     public float GetCurrentSplineDistancePercentage()
@@ -253,6 +297,9 @@ public class Player : MonoBehaviour
         float elapsedTime = 0f;
 
         m_isMoving = false;
+        m_followCamera.IgnoreTargetRotation(true);
+
+        Quaternion startRot = Quaternion.LookRotation(end - start, Vector3.up);
 
         while (elapsedTime < duration)
         {
@@ -263,12 +310,17 @@ public class Player : MonoBehaviour
             transform.position = position;
 
             float rotation = Mathf.Lerp(0, 360, t);
-            transform.rotation = Quaternion.Euler(rotation, 0, 0);
+            transform.rotation = startRot * Quaternion.Euler(rotation, 0, 0);
 
             elapsedTime += Time.deltaTime;
 
             yield return null;
         }
+
+        transform.position = end;
+        transform.rotation = startRot * Quaternion.Euler(360, 0, 0);
+
+        m_followCamera.IgnoreTargetRotation(false);
 
         if (crashed)
         {
@@ -278,8 +330,11 @@ public class Player : MonoBehaviour
         {
             m_isMoving = true;
         }
+    }
 
-        transform.position = end;
-        transform.rotation = Quaternion.Euler(360, 0, 0);
+    private void PlayAmbientSFX()
+    {
+        AudioManager audioManager = AudioManager.Instance;
+        audioManager.PlayPlayerAudio(audioManager.AudioSoundList.sfx.carHum);
     }
 }

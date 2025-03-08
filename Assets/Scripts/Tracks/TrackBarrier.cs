@@ -21,7 +21,7 @@ public class TrackBarrier : TrackBase
         {
             m_player.Crashed();
 
-            Vector3 barrierEndPoint = m_barrierPivot.eulerAngles;
+            Vector3 barrierEndPoint = m_barrierPivot.localEulerAngles;
             barrierEndPoint.z = -90f;
             m_barrierTween = m_barrierPivot.DOLocalRotate(barrierEndPoint, 0.35f).SetEase(Ease.OutBounce);
         }
@@ -35,7 +35,7 @@ public class TrackBarrier : TrackBase
             m_barrierTween.Kill();
 
         float barrierRotateEndZ = m_startState == StartState.DOWN ? 0f : -90f;
-        Vector3 barrierEndPoint = m_barrierPivot.eulerAngles;
+        Vector3 barrierEndPoint = m_barrierPivot.localEulerAngles;
         barrierEndPoint.z = barrierRotateEndZ;
         m_barrierTween = m_barrierPivot.DOLocalRotate(barrierEndPoint, m_barrierTweenDuration).SetEase(Ease.OutBounce);
     }
@@ -48,7 +48,7 @@ public class TrackBarrier : TrackBase
             m_barrierTween.Kill();
 
         float barrierRotateEndZ = m_startState == StartState.DOWN ? -90f : 0f;
-        Vector3 barrierEndPoint = m_barrierPivot.eulerAngles;
+        Vector3 barrierEndPoint = m_barrierPivot.localEulerAngles;
         barrierEndPoint.z = barrierRotateEndZ;
         m_barrierTween = m_barrierPivot.DOLocalRotate(barrierEndPoint, m_barrierTweenDuration).SetEase(Ease.OutBounce);
     }
@@ -60,11 +60,11 @@ public class TrackBarrier : TrackBase
         {
             if (m_startState == StartState.UP)
             {
-                m_barrierPivot.rotation = Quaternion.identity;
+                m_barrierPivot.localRotation = Quaternion.identity;
             }
             else
             {
-                m_barrierPivot.rotation = Quaternion.Euler(0, 0, -90f);
+                m_barrierPivot.localRotation = Quaternion.Euler(0, 0, -90f);
             }
         }
 #endif

@@ -358,7 +358,7 @@ MonoBehaviour:
   m_bridgePivot: {fileID: 5385231846428642051}
   m_endTrack: {fileID: 6925545729800112676}
   m_bridgeZOffset: 3
-  m_bridgeTweenDuration: 1.25
+  m_bridgeTweenDuration: 0.75
 --- !u!1 &6800985996728982905
 GameObject:
   m_ObjectHideFlags: 0

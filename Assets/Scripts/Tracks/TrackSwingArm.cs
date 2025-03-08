@@ -57,6 +57,12 @@ public class TrackSwingArm : TrackBase
         }
 
         m_rotateTween = m_swingArmPivot.DOLocalRotate(rotateEndAngles, m_rotateTweenDuration);
+
+        if (m_player)
+        {
+            AudioManager audioManager = AudioManager.Instance;
+            audioManager.PlaySFXAudio(audioManager.AudioSoundList.sfx.rotatorPadUsed);
+        }
     }
 
     protected override void GameplayEvents_UserInputReleased()
@@ -67,6 +73,12 @@ public class TrackSwingArm : TrackBase
             m_rotateTween.Kill();
 
         m_rotateTween = m_swingArmPivot.DOLocalRotate(m_originalRotation.eulerAngles, m_rotateTweenDuration * 0.675f);
+
+        if (m_player)
+        {
+            AudioManager audioManager = AudioManager.Instance;
+            audioManager.PlaySFXAudio(audioManager.AudioSoundList.sfx.rotatorPadUsed);
+        }
     }
     private void OnValidate()
     {

@@ -11,7 +11,7 @@ public class LevelFailedScreen : MonoBehaviour
     [SerializeField] private Transform m_crashedText;
     [SerializeField] private Transform m_resetButton;
 
-    void Start()
+    void OnEnable()
     {
         StartCoroutine(AnimateLetters());
     }
@@ -39,6 +39,9 @@ public class LevelFailedScreen : MonoBehaviour
 
     public void OnResetPressed()
     {
+        AudioManager audioManager = AudioManager.Instance;
+        audioManager.PlayUIAudio(audioManager.AudioSoundList.ui.uiButtonPress);
+
         GameManager.Instance.ResetCurrentLevel();
     }
 }

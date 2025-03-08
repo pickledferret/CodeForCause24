@@ -1,5 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class TrackRotator : TrackBase
 {
@@ -9,6 +11,7 @@ public class TrackRotator : TrackBase
     [SerializeField] private float m_rotateTweenDuration = 0.75f;
 
     [Header("Player Override Settings")]
+    [SerializeField] private bool m_overrideSpeed = false;
     [SerializeField] private float m_speedOverride = 0.5f;
     [SerializeField] private float m_speedOverrideDuration = 5f;
 
@@ -33,9 +36,12 @@ public class TrackRotator : TrackBase
 
         if (m_player)
         {
-            if (m_rotatorPivot.localRotation.eulerAngles.y < 10f)
+            if (m_rotatorPivot.localEulerAngles.y < 15f)
             {
-                m_player.ApplySpeedBoostMultiplier(m_speedOverride, m_speedOverrideDuration);
+                if (m_overrideSpeed)
+                {
+                    m_player.ApplySpeedBoostMultiplier(m_speedOverride, m_speedOverrideDuration);
+                }
             }
             else
             {
@@ -64,6 +70,12 @@ public class TrackRotator : TrackBase
         }
 
         m_rotateTween = m_rotatorPivot.DOLocalRotate(rotateEndPoint, m_rotateTweenDuration);
+
+        if (m_player)
+        {
+            AudioManager audioManager = AudioManager.Instance;
+            audioManager.PlaySFXAudio(audioManager.AudioSoundList.sfx.rotatorPadUsed);
+        }
     }
 
     protected override void GameplayEvents_UserInputReleased()
@@ -74,6 +86,12 @@ public class TrackRotator : TrackBase
             m_rotateTween.Kill();
 
         m_rotateTween = m_rotatorPivot.DOLocalRotate(m_originalRotation, m_rotateTweenDuration);
+
+        if (m_player)
+        {
+            AudioManager audioManager = AudioManager.Instance;
+            audioManager.PlaySFXAudio(audioManager.AudioSoundList.sfx.rotatorPadUsed);
+        }
     }
 
     private void OnValidate()

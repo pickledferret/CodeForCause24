@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 375f25eab0f93684984e74a57a03d24f, type: 3}
+  m_Name: AudioSoundList
+  m_EditorClassIdentifier: 
+  music:
+    music1:
+      audioClip: {fileID: 8300000, guid: 10389556fe21b374eaee5ec302c0e358, type: 3}
+      volume: 0.3
+    music2:
+      audioClip: {fileID: 8300000, guid: 720775d9ef89bbb46862733074113c7f, type: 3}
+      volume: 0.3
+    music3:
+      audioClip: {fileID: 8300000, guid: af351d4c69fcbf64aac59a8b9bf43714, type: 3}
+      volume: 0.3
+  sfx:
+    crowdClapping:
+      audioClip: {fileID: 8300000, guid: b0500fbb2ff5afd42a25684ee9e6c44d, type: 3}
+      volume: 0.75
+    airHorn:
+      audioClip: {fileID: 8300000, guid: 00042ec422b33294fb8a602f3813bb0d, type: 3}
+      volume: 0.7
+    boostPad:
+      audioClip: {fileID: 8300000, guid: 5bfde01138e090643b112de6447ee6fb, type: 3}
+      volume: 0.5
+    carCrashHorn:
+      audioClip: {fileID: 8300000, guid: 8fe9a76f90a676641a2a5975e5ad8e88, type: 3}
+      volume: 0.2
+    carCrash:
+      audioClip: {fileID: 8300000, guid: b0132f7dfd2004d48bc315a77f6b91cf, type: 3}
+      volume: 0.3
+    carHum:
+      audioClip: {fileID: 8300000, guid: 7e8f9f2209b431c4c99e5286831d642c, type: 3}
+      volume: 1
+    endOfGameplayJingle:
+      audioClip: {fileID: 8300000, guid: 7162c6c242c817c4eb2a25c71316eb92, type: 3}
+      volume: 0.75
+    jumpPad:
+      audioClip: {fileID: 8300000, guid: e448804aa52c63441824749d000cebe7, type: 3}
+      volume: 0.75
+    levelCompleteTrill:
+      audioClip: {fileID: 8300000, guid: a55d42a373218e64db78dd62f88ca4ba, type: 3}
+      volume: 0.35
+    rotatorPadUsed:
+      audioClip: {fileID: 8300000, guid: d98cdfb1621457548a5b381376971a4d, type: 3}
+      volume: 1
+  ui:
+    uiButtonPress:
+      audioClip: {fileID: 8300000, guid: de0454a5c046823439464c52da745b17, type: 3}
+      volume: 0.35

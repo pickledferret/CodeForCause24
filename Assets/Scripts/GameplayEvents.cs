@@ -30,11 +30,16 @@ public static class GameplayEvents
         StartLevelPressed?.Invoke();
     }
 
-
     public static event EmptyDelegate UserInputPressed;
     public static void OnUserInputPressed()
     {
         UserInputPressed?.Invoke();
+    }
+
+    public static event BoolDelegate PlayerInsideFTUETrigger;
+    public static void OnPlayerInsideFTUETrigger(bool entered)
+    {
+        PlayerInsideFTUETrigger?.Invoke(entered);
     }
 
     public static event EmptyDelegate UserInputReleased;

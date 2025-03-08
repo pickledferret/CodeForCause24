@@ -11,7 +11,7 @@ public class LevelCompleteScreen : MonoBehaviour
     [SerializeField] private Transform m_levelCompleteText;
     [SerializeField] private Transform m_resetButton;
 
-    void Start()
+    void OnEnable()
     {
         StartCoroutine(AnimateLetters());
     }
@@ -39,6 +39,9 @@ public class LevelCompleteScreen : MonoBehaviour
 
     public void OnContinuePressed()
     {
+        AudioManager audioManager = AudioManager.Instance;
+        audioManager.PlayUIAudio(audioManager.AudioSoundList.ui.uiButtonPress);
+
         GameManager.Instance.GoToNextLevel();
     }
 }

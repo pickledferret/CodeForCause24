@@ -484,7 +484,7 @@ MonoBehaviour:
   m_swingArmPivot: {fileID: 3759570747254211438}
   m_rotateTweenDuration: 1
   m_speedOverride: 0.1
-  m_speedOverrideDuration: 2.5
+  m_speedOverrideDuration: 2
 --- !u!1001 &4234928879674018471
 PrefabInstance:
   m_ObjectHideFlags: 0

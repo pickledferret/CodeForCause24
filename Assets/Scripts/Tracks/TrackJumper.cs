@@ -25,7 +25,6 @@ public class TrackJumper : TrackBase
         }
     }
 
-
     protected override void GameplayEvents_UserInputPressed()
     {
         base.GameplayEvents_UserInputPressed();
@@ -59,6 +58,9 @@ public class TrackJumper : TrackBase
             {
                 m_player.JumpTo(m_jumpTarget.position, m_jumpHeight, m_jumpDuration, false);
             }
+
+            AudioManager audioManager = AudioManager.Instance;
+            audioManager.PlaySFXAudio(audioManager.AudioSoundList.sfx.jumpPad);
 
             m_playerWasJumped = true;
         }

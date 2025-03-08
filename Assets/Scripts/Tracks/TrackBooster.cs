@@ -12,6 +12,9 @@ public class TrackBooster : TrackBase
         if (m_player)
         {
             m_player.ApplySpeedBoostMultiplier(m_speed, m_duration);
+
+            AudioManager audioManager = AudioManager.Instance;
+            audioManager.PlaySFXAudio(audioManager.AudioSoundList.sfx.boostPad);
         }
     }
 }

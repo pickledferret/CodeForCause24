@@ -590,7 +590,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_leftBridgePivot: {fileID: 2473865115130129682}
   m_rightBridgePivot: {fileID: 1014305889792707379}
-  m_rotateTweenDuration: 0.75
+  m_rotateTweenDuration: 0.625
 --- !u!1 &6877474090117659048
 GameObject:
   m_ObjectHideFlags: 0
