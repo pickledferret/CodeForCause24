@@ -29,5 +29,7 @@ public class StartScreen : MonoBehaviour
 
         GameManager.Instance.StartGame();
         gameObject.SetActive(false);
+
+        AdsManager.Instance.ShowInterstitialAd();
     }
 }
