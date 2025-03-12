@@ -25,6 +25,7 @@ public class AdsManager : MonoBehaviour
             // This callback is called once the MobileAds SDK is initialized.
             LoadBannerAd();
             LoadInterstitialAd();
+            LoadRewardedAd();
         });
     }
 
@@ -35,7 +36,7 @@ public class AdsManager : MonoBehaviour
     #region BANNER_ADS
     // These ad units are configured to always serve test ads.
 #if UNITY_ANDROID
-    private string _adBannerUnitId = "ca-app-pub-3940256099942544/6300978111";
+    private string _adBannerUnitId = "ca-app-pub-6139445788238292/6063539990";
 #elif UNITY_IPHONE
     private string _adBannerUnitId = "ca-app-pub-3940256099942544/2934735716";
 #else
@@ -72,14 +73,15 @@ public class AdsManager : MonoBehaviour
         if (_bannerView == null)
         {
             CreateBannerView();
+
+            // create our request used to load the ad.
+            var adRequest = new AdRequest();
+
+            // send the request to load the ad.
+            Debug.Log("Loading banner ad.");
+            _bannerView.LoadAd(adRequest);
         }
 
-        // create our request used to load the ad.
-        var adRequest = new AdRequest();
-
-        // send the request to load the ad.
-        Debug.Log("Loading banner ad.");
-        _bannerView.LoadAd(adRequest);
     }
 
     /// <summary>
@@ -147,7 +149,7 @@ public class AdsManager : MonoBehaviour
     #region INTERSTITIALS
     // These ad units are configured to always serve test ads.
 #if UNITY_ANDROID
-    private string _adInterstitialUnitId = "ca-app-pub-3940256099942544/1033173712";
+    private string _adInterstitialUnitId = "ca-app-pub-6139445788238292/8892619986";
 #elif UNITY_IPHONE
   private string _adInterstitialUnitId = "ca-app-pub-3940256099942544/4411468910";
 #else
@@ -294,6 +296,8 @@ public class AdsManager : MonoBehaviour
             Debug.Log("Rewarded ad loaded with response : " + ad.GetResponseInfo());
 
             _rewardedAd = ad;
+
+            RegisterEventHandlers(_rewardedAd);
         });
     }
 
@@ -311,5 +315,44 @@ public class AdsManager : MonoBehaviour
         }
     }
 
+    private void RegisterEventHandlers(RewardedAd ad)
+    {
+        // Raised when the ad is estimated to have earned money.
+        ad.OnAdPaid += (AdValue adValue) =>
+        {
+            Debug.Log($"Rewarded ad paid {adValue.Value} {adValue.CurrencyCode}.");
+        };
+        // Raised when an impression is recorded for an ad.
+        ad.OnAdImpressionRecorded += () =>
+        {
+            Debug.Log("Rewarded ad recorded an impression.");
+        };
+        // Raised when a click is recorded for an ad.
+        ad.OnAdClicked += () =>
+        {
+            Debug.Log("Rewarded ad was clicked.");
+        };
+        // Raised when an ad opened full screen content.
+        ad.OnAdFullScreenContentOpened += () =>
+        {
+            Debug.Log("Rewarded ad full screen content opened.");
+        };
+        // Raised when the ad closed full screen content.
+        ad.OnAdFullScreenContentClosed += () =>
+        {
+            Debug.Log("Rewarded ad full screen content closed.");
+
+            // Reload the ad so that we can show another as soon as possible.
+            LoadRewardedAd();
+        };
+        // Raised when the ad failed to open full screen content.
+        ad.OnAdFullScreenContentFailed += (AdError error) =>
+        {
+            Debug.LogError("Rewarded ad failed to open full screen content " + "with error : " + error);
+
+            // Reload the ad so that we can show another as soon as possible.
+            LoadRewardedAd();
+        };
+    }
     #endregion
 }
