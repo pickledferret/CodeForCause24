@@ -198,12 +198,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_directionState: 2
+  m_startState: 0
   m_platformPivot: {fileID: 2062267197260531965}
   m_ghostPlatform: {fileID: 2720329051349799794}
   m_moveTweenDuration: 1.15
+  m_platformOffset: 3
   m_speedOverride: 0.5
   m_speedOverrideDuration: 2
-  m_platformOffset: 3
 --- !u!65 &2032325289784537918
 BoxCollider:
   m_ObjectHideFlags: 0

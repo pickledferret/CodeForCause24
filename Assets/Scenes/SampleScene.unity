@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 184055386}
   - component: {fileID: 184055385}
   m_Layer: 0
-  m_Name: GAME MANAGER
+  m_Name: GameManaer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_finalScreen: {fileID: 4492530863747550947}
   m_maxLevelSize: 12
   m_floorColour: {fileID: 261348813}
-  m_levelOverride: 6
+  m_levelOverride: 11
 --- !u!4 &184055386
 Transform:
   m_ObjectHideFlags: 0

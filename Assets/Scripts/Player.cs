@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     private float m_currentSpeed;
     private Coroutine m_speedBoostCoroutine;
     private Coroutine m_speedDebuffCoroutine;
+    public bool HasCrashed => m_crashed;
 
     private void Awake()
     {

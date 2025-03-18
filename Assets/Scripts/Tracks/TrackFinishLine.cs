@@ -8,7 +8,7 @@ public class TrackFinishLine : TrackBase
     {
         base.OnTriggerEnter(other);
 
-        if (m_player && !m_triggered)
+        if (m_player && !m_player.HasCrashed && !m_triggered)
         {
             m_triggered = true;
             m_player.TrackComplete();
