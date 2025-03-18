@@ -31,7 +31,9 @@ public class CameraController : MonoBehaviour
     void LateUpdate()
     {
         if (m_followTarget == null || !m_canUpdate)
+        {
             return;
+        }
 
         Quaternion yRotation = Quaternion.Euler(0, m_followTarget.eulerAngles.y, 0);
         Vector3 rotatedFollowOffset = m_ignoreTargetRotation ? m_followOffset : yRotation * m_followOffset;

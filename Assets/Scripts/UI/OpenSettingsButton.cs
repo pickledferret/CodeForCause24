@@ -2,14 +2,13 @@ using UnityEngine;
 
 public class OpenSettingsButton : MonoBehaviour
 {
-    private const string PATH = "Prefabs/UI/SettingsScreen";
     public void OnSettingsButtonPressed()
     {
-        SettingsScreen settingsPrefab = Resources.Load<SettingsScreen>(PATH);
+        SettingsScreen settingsPrefab = Resources.Load<SettingsScreen>(SettingsScreen.PATH);
 
         if (settingsPrefab == null)
         {
-            Debug.LogError($"Failed to load prefab at path: {PATH}");
+            Debug.LogError($"Failed to load prefab at path: {SettingsScreen.PATH}");
             return;
         }
 

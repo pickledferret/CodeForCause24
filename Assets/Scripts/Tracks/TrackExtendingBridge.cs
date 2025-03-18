@@ -19,7 +19,9 @@ public class TrackExtendingBridge : TrackBase
         base.GameplayEvents_UserInputPressed();
 
         if (m_bridgeTween != null)
+        {
             m_bridgeTween.Kill();
+        }
 
         float bridgeScaleEndZ = m_startState == StartState.RETRACTED ? m_bridgeZOffset : 0.25f;
         m_bridgeTween = m_bridgePivot.DOScaleZ(bridgeScaleEndZ, m_bridgeTweenDuration);
@@ -30,7 +32,9 @@ public class TrackExtendingBridge : TrackBase
         base.GameplayEvents_UserInputReleased();
 
         if (m_bridgeTween != null)
+        {
             m_bridgeTween.Kill();
+        }
 
         float bridgeScaleEndZ = m_startState == StartState.RETRACTED ? 0.25f : m_bridgeZOffset;
         m_bridgeTween = m_bridgePivot.DOScaleZ(bridgeScaleEndZ, m_bridgeTweenDuration);

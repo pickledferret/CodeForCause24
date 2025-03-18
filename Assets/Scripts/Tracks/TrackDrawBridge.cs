@@ -53,11 +53,8 @@ public class TrackDrawBridge : TrackBase
     {
         base.GameplayEvents_UserInputPressed();
 
-        if (m_bridgeLeftTween != null)
-            m_bridgeLeftTween.Kill();
-
-        if (m_bridgeRightTween != null)
-            m_bridgeRightTween.Kill();
+        if (m_bridgeLeftTween != null) m_bridgeLeftTween.Kill();
+        if (m_bridgeRightTween != null) m_bridgeRightTween.Kill();
 
         m_bridgeLeftTween = m_leftBridgePivot.DOLocalRotate(new Vector3(0f, 0f, 0f), m_rotateTweenDuration);
         m_bridgeRightTween = m_rightBridgePivot.DOLocalRotate(new Vector3(0f, m_bridgeRightOriginalRotation.y, 0f), m_rotateTweenDuration);
@@ -67,11 +64,8 @@ public class TrackDrawBridge : TrackBase
     {
         base.GameplayEvents_UserInputReleased();
 
-        if (m_bridgeLeftTween != null)
-            m_bridgeLeftTween.Kill();
-
-        if (m_bridgeRightTween != null)
-            m_bridgeRightTween.Kill();
+        if (m_bridgeLeftTween != null) m_bridgeLeftTween.Kill();
+        if (m_bridgeRightTween != null) m_bridgeRightTween.Kill();
 
         if (m_playerOnBridge)
         {

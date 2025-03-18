@@ -75,24 +75,24 @@ public class AudioManager : MonoBehaviour
         PlayerPrefs.SetFloat(SFX_VOL_KEY, val);
     }
 
-    public void PlaySFXAudio(AudioClipReference clip)
+    public void PlaySFXAudio(AudioClipSettings clip)
     {
         m_sfxSource.PlayOneShot(clip.audioClip, clip.volume);
     }
 
-    public void PlayUIAudio(AudioClipReference clip)
+    public void PlayUIAudio(AudioClipSettings clip)
     {
         m_uiSource.PlayOneShot(clip.audioClip, clip.volume);
     }
 
-    public void PlayMusicAudio(AudioClipReference clip)
+    public void PlayMusicAudio(AudioClipSettings clip)
     {
         m_musicSource.clip = clip.audioClip;
         m_musicSource.volume = clip.volume;
         m_musicSource.Play();
     }
 
-    public void PlayPlayerAudio(AudioClipReference clip)
+    public void PlayPlayerAudio(AudioClipSettings clip)
     {
         m_playerSource.clip = clip.audioClip;
         m_playerSource.volume = clip.volume;

@@ -42,7 +42,9 @@ public class TrackSwingArm : TrackBase
         base.GameplayEvents_UserInputPressed();
 
         if (m_rotateTween != null)
+        {
             m_rotateTween.Kill();
+        }
 
         Vector3 rotateEndAngles = Vector3.zero;
 
@@ -70,7 +72,9 @@ public class TrackSwingArm : TrackBase
         base.GameplayEvents_UserInputReleased();
 
         if (m_rotateTween != null)
+        {
             m_rotateTween.Kill();
+        }
 
         m_rotateTween = m_swingArmPivot.DOLocalRotate(m_originalRotation.eulerAngles, m_rotateTweenDuration * 0.675f);
 

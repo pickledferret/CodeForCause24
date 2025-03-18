@@ -29,7 +29,6 @@ public class Player : MonoBehaviour
     private float m_currentSpeed;
     private Coroutine m_speedBoostCoroutine;
     private Coroutine m_speedDebuffCoroutine;
-   
 
     private void Awake()
     {
@@ -62,11 +61,10 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (!m_trackStarted)
+        if (!m_trackStarted || m_crashed)
+        {
             return;
-
-        if (m_crashed)
-            return;
+        }
 
         CheckForUserInput();
 

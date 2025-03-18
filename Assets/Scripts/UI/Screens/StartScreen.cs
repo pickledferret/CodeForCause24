@@ -9,6 +9,7 @@ public class StartScreen : MonoBehaviour
 
     private void OnEnable()
     {
+        // Pulse Scale the Tap To Start text.
         m_textScale = DOTween.Sequence();
         m_textScale.Append(m_text.DOScale(1.1f, 0.5f));
         m_textScale.Append(m_text.DOScale(1f, 0.5f));

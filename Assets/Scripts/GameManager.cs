@@ -31,8 +31,8 @@ public class GameManager : MonoBehaviour
 
     private string m_currentLoadedLevel;
 
-    private List<AudioClipReference> m_backgroundMusicClips = new List<AudioClipReference>();
-    private AudioClipReference m_lastPlayedBackgroundMusicClip;
+    private List<AudioClipSettings> m_backgroundMusicClips = new List<AudioClipSettings>();
+    private AudioClipSettings m_lastPlayedBackgroundMusicClip;
 
     private void Awake()
     {
@@ -142,15 +142,15 @@ public class GameManager : MonoBehaviour
     {
         while (true)
         {
-            AudioClipReference nextTrack = GetRandomTrack();
+            AudioClipSettings nextTrack = GetRandomTrack();
             AudioManager.Instance.PlayMusicAudio(nextTrack);
             yield return new WaitForSeconds(nextTrack.audioClip.length);
         }
     }
 
-    private AudioClipReference GetRandomTrack()
+    private AudioClipSettings GetRandomTrack()
     {
-        AudioClipReference randomTrack;
+        AudioClipSettings randomTrack;
         do
         {
             randomTrack = m_backgroundMusicClips[Random.Range(0, m_backgroundMusicClips.Count)];

@@ -32,7 +32,9 @@ public class TrackBarrier : TrackBase
         base.GameplayEvents_UserInputPressed();
 
         if (m_barrierTween != null)
+        {
             m_barrierTween.Kill();
+        }
 
         float barrierRotateEndZ = m_startState == StartState.DOWN ? 0f : -90f;
         Vector3 barrierEndPoint = m_barrierPivot.localEulerAngles;
@@ -45,7 +47,9 @@ public class TrackBarrier : TrackBase
         base.GameplayEvents_UserInputReleased();
 
         if (m_barrierTween != null)
+        {
             m_barrierTween.Kill();
+        }
 
         float barrierRotateEndZ = m_startState == StartState.DOWN ? -90f : 0f;
         Vector3 barrierEndPoint = m_barrierPivot.localEulerAngles;

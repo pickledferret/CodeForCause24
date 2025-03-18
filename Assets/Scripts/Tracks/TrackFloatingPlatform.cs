@@ -43,7 +43,9 @@ public class TrackFloatingPlatform : TrackBase
         base.GameplayEvents_UserInputPressed();
 
         if (m_moveTween != null)
+        {
             m_moveTween.Kill();
+        }
 
         Vector3 moveEndPoint = Vector3.zero;
 
@@ -68,7 +70,9 @@ public class TrackFloatingPlatform : TrackBase
         base.GameplayEvents_UserInputReleased();
 
         if (m_moveTween != null)
+        {
             m_moveTween.Kill();
+        }
 
         m_moveTween = m_platformPivot.DOLocalMove(m_originalPosition, m_moveTweenDuration * 0.675f);
     }

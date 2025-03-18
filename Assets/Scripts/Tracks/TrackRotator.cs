@@ -55,7 +55,9 @@ public class TrackRotator : TrackBase
         base.GameplayEvents_UserInputPressed();
 
         if (m_rotateTween != null)
+        {
             m_rotateTween.Kill();
+        }
 
         Vector3 rotateEndPoint = Vector3.zero;
         
@@ -83,7 +85,9 @@ public class TrackRotator : TrackBase
         base.GameplayEvents_UserInputReleased();
 
         if (m_rotateTween != null)
+        {
             m_rotateTween.Kill();
+        }
 
         m_rotateTween = m_rotatorPivot.DOLocalRotate(m_originalRotation, m_rotateTweenDuration);
 

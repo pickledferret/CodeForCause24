@@ -5,46 +5,30 @@ using System;
 
 public static class GameplayEvents
 {
-    // Core Delegates
-    public delegate void EmptyDelegate();
-    public delegate void IntDelegate(int val);
-    public delegate void StringDelegate(string val);
-    public delegate void BoolDelegate(bool val);
-    public delegate void ActionDelegate(Action val);
+    /// =====================
+    /// Custom Event Triggers
+    /// =====================
+    
+    // Level Start
+    public static event Action StartLevelPressed;
+    public static void OnStartLevelPressed() { StartLevelPressed?.Invoke(); }
 
-    // Custom Delegates
-    public delegate void ScreenFadeDelegate(float fadeToBlackTime, Action fadeToBlackCallback, float delayBeforeFadeIn, float fadeInTime, Action fadeInCallback);
+    // Input Pressed
+    public static event Action UserInputPressed;
+    public static void OnUserInputPressed() { UserInputPressed?.Invoke(); }
 
+    // Input Released
+    public static event Action UserInputReleased;
+    public static void OnUserInputReleased() { UserInputReleased?.Invoke(); }
 
-    // Screen Fade Events
-    public static event ScreenFadeDelegate ScreenFade;
+    // Tutorial Trigger
+    public static event Action<bool> PlayerInsideFTUETrigger;
+    public static void OnPlayerInsideFTUETrigger(bool entered) { PlayerInsideFTUETrigger?.Invoke(entered); }
+
+    // UI SCreen Fade
+    public static event Action<float, Action, float, float, Action> ScreenFade;
     public static void OnDoScreenFade(float fadeToBlackTime, Action fadeToBlackCallback, float delayBeforeFadeIn, float fadeInTime, Action fadeInCallback)
     {
         ScreenFade?.Invoke(fadeToBlackTime, fadeToBlackCallback, delayBeforeFadeIn, fadeInTime, fadeInCallback);
-    }
-
-    // Custom Events
-    public static event EmptyDelegate StartLevelPressed;
-    public static void OnStartLevelPressed()
-    {
-        StartLevelPressed?.Invoke();
-    }
-
-    public static event EmptyDelegate UserInputPressed;
-    public static void OnUserInputPressed()
-    {
-        UserInputPressed?.Invoke();
-    }
-
-    public static event BoolDelegate PlayerInsideFTUETrigger;
-    public static void OnPlayerInsideFTUETrigger(bool entered)
-    {
-        PlayerInsideFTUETrigger?.Invoke(entered);
-    }
-
-    public static event EmptyDelegate UserInputReleased;
-    public static void OnUserInputReleased()
-    {
-        UserInputReleased?.Invoke();
     }
 }

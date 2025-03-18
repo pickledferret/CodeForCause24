@@ -17,7 +17,9 @@ public class TrackSeesaw : TrackBase
         base.GameplayEvents_UserInputPressed();
 
         if (m_seesawRotateTween != null)
+        {
             m_seesawRotateTween.Kill();
+        }
 
         m_seesawRotateTween = m_seesawPivot.DOLocalRotate(new Vector3(m_directionState == DirectionState.NEAR ? 30f : -30f, 0f, 0f), m_rotateTweenDuration);
     }
@@ -27,7 +29,9 @@ public class TrackSeesaw : TrackBase
         base.GameplayEvents_UserInputReleased();
 
         if (m_seesawRotateTween != null)
+        {
             m_seesawRotateTween.Kill();
+        }
 
         m_seesawRotateTween = m_seesawPivot.DOLocalRotate(new Vector3(m_directionState == DirectionState.NEAR ? -30f : 30f, 0f, 0f), m_rotateTweenDuration);
     }

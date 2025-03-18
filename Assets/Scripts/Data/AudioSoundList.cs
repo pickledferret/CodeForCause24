@@ -16,31 +16,31 @@ public class AudioSoundList : ScriptableObject
     [System.Serializable]
     public struct MUSIC
     {
-        public AudioClipReference music1;
-        public AudioClipReference music2;
-        public AudioClipReference music3;
+        public AudioClipSettings music1;
+        public AudioClipSettings music2;
+        public AudioClipSettings music3;
     }
 
 
     [System.Serializable]
     public struct SFX
     {
-        public AudioClipReference crowdClapping;
-        public AudioClipReference airHorn;
-        public AudioClipReference boostPad;
-        public AudioClipReference carCrashHorn;
-        public AudioClipReference carCrash;
-        public AudioClipReference carHum;
-        public AudioClipReference endOfGameplayJingle;
-        public AudioClipReference jumpPad;
-        public AudioClipReference levelCompleteTrill;
-        public AudioClipReference rotatorPadUsed;
+        public AudioClipSettings crowdClapping;
+        public AudioClipSettings airHorn;
+        public AudioClipSettings boostPad;
+        public AudioClipSettings carCrashHorn;
+        public AudioClipSettings carCrash;
+        public AudioClipSettings carHum;
+        public AudioClipSettings endOfGameplayJingle;
+        public AudioClipSettings jumpPad;
+        public AudioClipSettings levelCompleteTrill;
+        public AudioClipSettings rotatorPadUsed;
     }
 
 
     [System.Serializable]
     public struct UI
     {
-        public AudioClipReference uiButtonPress;
+        public AudioClipSettings uiButtonPress;
     }
 }
